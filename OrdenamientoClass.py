@@ -21,9 +21,24 @@ class Ordenamiento(OrdenableAbstractClass):
                 
         self.imprimir(elementos)
                 
-            
     def burbuja_mejorado(self,elementos):
-        pass
+        self.imprimir(elementos)
+        esta_ordenado = False;
+        for i in range(0,len(elementos),1):
+            if (not esta_ordenado):
+                esta_ordenado = True
+                for j in range(1,len(elementos)-1):
+                    if(elementos[j] > elementos[j+1]):
+                        esta_ordenado = False
+                        aux = elementos[j]
+                        elementos[j] = elementos[j + 1]
+                        elementos[j + 1] = aux
+                    self.imprimir(elementos)
+            else:
+                print("Sal......")
+                break
+            
+        self.imprimir(elementos)
     
     def seleccion(self,elementos):
         pass
