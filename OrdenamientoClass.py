@@ -1,33 +1,37 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Oct 11 07:22:52 2021
+Created on Sat Oct  9 17:57:28 2021
 
 @author: guest
 """
-from OrdenableAbstract import OrdenableAbstractClass
+from OrdenableAbstract import OrdenableAbstractClass;
+
 class Ordenamiento(OrdenableAbstractClass):
     
+    #https://docs.python.org/3/library/stdtypes.html#typesseq-range
+    
     def burbuja(self,elementos):
-        self.imprimir(elementos)#O(n)
-        #[0,len(elementos)-1]
-        for i in range(0,len(elementos),1): #O(n)
+        self.imprimir(elementos)
+        for i in range(0,len(elementos),1):
             print('\nIteracion: ' , i)
-            for j in range(0,len(elementos)-1,1):#O(n)
-                if(elementos[j] > elementos[j+1]): #O(1)
+            for j in range(0,len(elementos)-1,1):#(O(n))
+                if(elementos[j] > elementos[j+1]):#O(1)
                     aux = elementos[j]
                     elementos[j] = elementos[j + 1]
                     elementos[j + 1] = aux
                 self.imprimir(elementos)
-                
         self.imprimir(elementos)
                 
+            
+    
     def burbuja_mejorado(self,elementos):
         self.imprimir(elementos)
         esta_ordenado = False;
         for i in range(0,len(elementos),1):
+            print("índice: " , i)
             if (not esta_ordenado):
                 esta_ordenado = True
-                for j in range(1,len(elementos)-1):
+                for j in range(0,len(elementos)-i-1):
                     if(elementos[j] > elementos[j+1]):
                         esta_ordenado = False
                         aux = elementos[j]
@@ -41,11 +45,31 @@ class Ordenamiento(OrdenableAbstractClass):
         self.imprimir(elementos)
     
     def seleccion(self,elementos):
-        pass
+        self.imprimir(elementos)
+        for i in range(0,len(elementos)):
+            minimo = i
+            for j in range(i+1, len(elementos),1):
+                if(elementos[j] < elementos[minimo]):
+                    minimo = j
+            aux = elementos[i]
+            elementos[i] = elementos[minimo]
+            elementos[minimo] = aux
+            self.imprimir(elementos)
+
+        
 
     
     def insercion(self,elementos):
-        pass
+        aux=0
+        for i in range(0,len(elementos)):
+            aux = elementos[i]
+            for j in range(i-1, -1,-1):
+                self.imprimir(elementos)
+                if (elementos[j]>aux):
+                    elementos[j+1] = elementos[j]
+                    elementos[j] = aux
+
+        self.imprimir(elementos)
     
     def merge_sort(self,elementos):
         pass
