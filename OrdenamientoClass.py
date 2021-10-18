@@ -57,10 +57,7 @@ class Ordenamiento(OrdenableAbstractClass):
             self.imprimir(elementos)
 
         
-
-    
     def insercion(self,elementos):
-        aux=0
         for i in range(0,len(elementos)):
             aux = elementos[i]
             for j in range(i-1, -1,-1):
@@ -75,10 +72,42 @@ class Ordenamiento(OrdenableAbstractClass):
         pass
     
     def quick_sort(self,elementos):
-        pass
+        self.imprimir(elementos)
+        self.quick_sort_aux(elementos, 0, len(elementos)-1)
+        
+    def quick_sort_aux(self,elementos, left, right):
+        index = self.partition(elementos, left, right)
+        if (left < index-1):
+            self.quick_sort_aux(elementos, left, index-1)
+        if(right >= index):
+            self.quick_sort_aux(elementos, index, right)
+    
+    def partition(self,elementos, left, right):
+        i = left
+        j = right
+        pivot = elementos[int((left+right)/2)]
+        print('\nLeft: {} Right: {} Índice: {} Pivote: {}'.format(left,right,int((left+right)/2),pivot))
+        while(i <= j):
+            while(elementos[i]<pivot):
+                i+=1
+            while(elementos[j]>pivot):
+                j-=1
+            print("\ni= {} j= {}".format(i,j))
+            if(i<=j):
+                tmp = elementos[i];
+                elementos[i] = elementos[j];
+                elementos[j] = tmp;
+                i+=1
+                j-=1
+            
+            self.imprimir(elementos)
+        
+        return i
+            
+            
+        
     
     def imprimir(self,elementos):
-        #O(n)
         print("\nValor de elementos")
         for valor in elementos:
             print(valor, end='-')
